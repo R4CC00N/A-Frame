@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+        <a-box position="1.25 0.5 -3"  rotation="0 45 0" color="#ff0606"></a-box>
+        <a-torus position="1.25 2.5 -3" scale="0.3 0.3 0.3" rotation="50 45 0" radius="1.5" color="#9d0e78"></a-torus>
+        <a-box position="-1.25 2.5 -3" scale="0.5 0.5 0.5" rotation="45 45 0" color="#fca3e5"></a-box>
+        <a-sphere position="0.25 1.5 -5" radius="1" color="#83ff06"></a-sphere>
+        <a-cylinder position="-1 0.75 -3" radius="0.5" height="1.5" color="#ffb006"></a-cylinder>
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#a3c2fc"></a-plane>
+        <a-sky color="#ECECEC"></a-sky>
+
+      <a-entity movement-controls="fly: true">
+        <a-entity camera look-controls wasd-controls position="0 1.6 0"></a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
