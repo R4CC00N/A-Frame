@@ -7,6 +7,7 @@
     <a-scene xr-mode-ui="XRMode: xr">
       <a-assets>
         <a-asset-item id="dino" src="dino.glb"></a-asset-item>
+        <a-asset-item id="buu" src="kid_buu.glb"></a-asset-item>
         <a-asset-item id="drone" src="drone.glb"></a-asset-item>
       </a-assets>
 
@@ -14,8 +15,11 @@
           animation="property:rotation; to: 0 360 0; dur: 5000;
               loop: true; easing: linear"></a-entity>
 
+      <a-entity gltf-model="#buu" position="0 0.8 -3" scale="0.5 0.5 0.5" animation-mixer></a-entity>
       <a-entity gltf-model="#drone" position="-1 0.6 -3"
-          scale="2 2 2" animation-mixer>
+          scale="2 2 2" animation-mixer
+          animation="property:position; to: -1 1.5 -3; dur: 5000;
+              loop: true; dir: alternate;">
       </a-entity>
 
       <a-plane position="0 0.7 -3" rotation="-90 0 0" width="4" height="2" color="brown"></a-plane>
