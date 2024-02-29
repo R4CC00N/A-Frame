@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+        <a-assets>
+            <img id="NormalMap" src="img/Rock_normal.jpg" alt="normalMap">
+            <img id="texture" src="img/Rock_albedo.jpg" alt="texture">
+            <img id="ao" src="img/Rock_ao.jpg" alt="ap">
+        </a-assets>
+
+      <a-box 
+      width="4" height="4" depth="4"
+      position="-1 1.5 -3"  
+      rotation="0 45 0" 
+      src="img/Rock_albedo.jpg"
+      repeat="1 1"
+      normal-map="#NormalMap"
+      normal-texture-repeat="1 1"
+      normal-scale="1 -1"
+      roughness="0.5"
+      ambient-occlusion-map="#ao"
+      ambient-occlusion-map-intensity="1.5"
+      ambient-occlusion-texture-repeat="1 1"
+      color="#ffffff"
+      ></a-box>
+
+      <a-box 
+      material="color: #5ec1c0;
+                src: #texture;
+                repeat: 1 1;
+                normal-map: #NormalMap;
+                normal-texture-repeat: 1 1;
+                normal-scale: 1 1;
+                roughness: 0.5"
+      position="1 1.5 -3"  
+      rotation="0 45 0" 
+      
+      ></a-box>
+
+
+
+      <a-plane position="0 1 -4" rotation="-90 0 0" width="10" height="10" color="#eab44a"></a-plane>
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>

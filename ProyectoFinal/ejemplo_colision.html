@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Proyecto A-Frame: Cilindro como Jugador con Colisiones</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene physics="debug: true"> <!-- Habilitar el sistema de física con debug para visualizar las colisiones -->
+
+    <!-- Jugador (cilindro) -->
+    <a-cylinder id="player" color="blue" radius="0.5" height="1.6" dynamic-body wasd-controls collision> <!-- Añadido el atributo collision -->
+      <!-- Cámara dentro del cilindro -->
+      <a-entity id="cameraRig" position = "0 1.6 0" camera look-controls></a-entity>
+    </a-cylinder>
+
+    <!-- Bloque con colisiones -->
+    <a-box id="bloque" width="2" height="2" depth="2" position="5 1 0" color="red" static-body></a-box>
+    
+    <!-- Luces -->
+    <a-light type="ambient" color="#333"></a-light>
+    <a-light type="directional" intensity="0.5" position="-1 1 0"></a-light>
+
+    <script>
+      // Obtener referencia al cilindro
+      var player = document.querySelector('#player');
+
+      // Llamar a la función para actualizar la posición del cilindro cada vez que la cámara se mueva
+      var movePlayer = function() {
+        var direction = player.getAttribute('rotation').y;
+        var x = Math.sin(direction * Math.PI / 180);
+        var z = Math.cos(direction * Math.PI / 180);
+        player.body.velocity.set(x * 2, 0, z * 2); // Ajustar la velocidad del movimiento según tus necesidades
+      };
+
+      // Llamar a la función para mover al jugador en cada cuadro
+      player.addEventListener('componentchanged', function(evt) {
+        if (evt.detail.name === 'rotation') {
+          movePlayer();
+        }
+      });
+
+      // Inicializar la posición del jugador
+      movePlayer();
+    </script>
+  </a-scene>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <script src="activar_anim.js"></script>
+  </head>
+  <body>
+    <a-scene  vr-mode-ui="enabled: true">
+      <!--  -->  
+        <a-assets>
+            <a-asset-item id="buu" src="kid_buu.glb"></a-asset-item>
+        </a-assets>
+      <!-- Objetos en las vitrinas -->
+      <!-- Objeto 1 -->
+      <!-- <a-entity id="buu" gltf-model="#buu" position="-3 0.5 -2.25" scale="0.5 0.5 0.5" rotation="0 45 0" ></a-entity> -->
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"
+      animation__enter="startEvents: mouseenter; property: scale;
+      to: 2 2 2; dur: 1000"
+        animation__leave="startEvents: mouseleave; property: scale;
+      to: 1 1 1; dur: 1000">
+          </a-sphere>
+
+      <!-- Cámara -->
+      <a-entity camera position="0 1.8 0" look-controls wasd-controls="enabled: true"></a-entity>
+    </a-scene>
+  </body>
+</html>

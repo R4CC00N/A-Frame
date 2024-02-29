@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <script src="activar_anim.js"></script>
+  </head>
+  <body>
+    <a-scene vr-mode-ui="enabled: true">
+      <!--  -->  
+        <a-assets>
+            <a-asset-item id="buu" src="kid_buu.glb"></a-asset-item>
+        </a-assets>
+      <!-- Paredes -->
+      <!-- Pared frontal -->
+      <a-plane position="0 3 -15" rotation="0 0 0" width="30" height="6" color="red" shadow></a-plane>
+      <!-- Pared derecha -->
+      <a-plane position="15 3 0" rotation="0 -90 0" width="30" height="6" color="pink" shadow></a-plane>
+      <!-- Pared izquierda -->
+      <a-plane position="-15 3 0" rotation="0 90 0" width="30" height="6" color="blue" shadow></a-plane>
+      <!-- Pared trasera -->
+      <a-plane position="0 3 15" rotation="180 0 0" width="30" height="6" color="green" shadow></a-plane>
+
+      <!-- Suelo -->
+      <a-plane position="0 0 0" rotation="-90 0 0" width="30" height="30" color="purple" shadow></a-plane>
+      <!-- Techo -->
+      <a-plane position="0 6 0" rotation="90 0 0" width="30" height="30" color="purple" shadow></a-plane>
+     
+      <!-- Habitación -->
+      <a-box position="0 3 0" width="30" height="6" depth="30" color="#f0f0f0" shadow></a-box>
+      
+      <!-- Vitrinas -->
+      <!-- Vitrina 1 -->
+      <a-box position="-3 1.5 -2" width="1" height="3" depth="1" color="yellow" opacity="0.15" shadow></a-box>
+      <!-- Vitrina 2 -->
+      <a-box position="3 1.5 -2" width="1" height="3" depth="1" color="yellow" opacity="0.15" shadow></a-box>
+      
+      <!-- Mesas -->
+      <!-- Mesa 1 -->
+      <a-box position="-3 0.25 -2" width="1.2" height="0.5" depth="1.2" color="#8B4513"></a-box>
+      <!-- Mesa 2 -->
+      <a-box position="3 0.25 -2" width="1.2" height="0.5" depth="1.2" color="#8B4513"></a-box>
+
+      <!-- Objetos en las vitrinas -->
+      <!-- Objeto 1 -->
+      <a-entity id="obj1" gltf-model="#buu" position="-3 0.5 -2.25" scale="0.5 0.5 0.5" rotation="0 45 0" animation-mixer></a-entity>
+
+      <a-sphere  position="0 1.25 -5" radius="0.5" color="white" 
+      animation="startEvents: click; property: scale;
+          from: 1.5 1.5 1.5; to: 1 1 1; dur: 1000"
+          action="event: click; message: activado!">
+  </a-sphere>
+  <a-sphere  position="0 1.25 -5" radius="0.25" color="white" 
+  animation="startEvents: click; property: scale;
+      from: 1.5 1.5 1.5; to: 1 1 1; dur: 1000"
+      action="event: click; message: activado!">
+</a-sphere>
+  
+
+      <!-- Objeto 2 -->
+      <a-box position="3 2 -2" scale="0.5 0.5 0.5" color="pink" id="center" orbit
+      animation="property: rotation;
+      to: 275 365 0; dur: 2000; loop: true; dir: alternate;"></a-box>
+      
+      <!-- Iluminación -->
+      <a-light type="ambient" color="white" ></a-light>
+      <a-light type="spot" position="-3 3 -2" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+      <a-light type="spot" position="3 3 -2" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+      
+      <!-- Cámara -->
+      <a-entity camera position="0 1.8 0" look-controls wasd-controls="enabled: true"></a-entity>
+
+      <!--Cursor-->
+      <a-entity cursor="rayOrigin:mouse"></a-entity>
+      <a-entity movement-controls="fly: true" position="0 0 0">
+        <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>
+        <a-entity cursor="rayOrigin:mouse"></a-entity>
+        <a-entity laser-controls="hand: right"></a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
