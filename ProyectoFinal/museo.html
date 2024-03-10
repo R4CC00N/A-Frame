@@ -4,75 +4,300 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script> 
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
     <script src="activar_anim.js"></script>
+    <script src="texture.js"></script>
   </head>
   <body>
-    <a-scene vr-mode-ui="enabled: true">
-      <!--  -->  
+    <a-scene xr-mode-ui="XRMode: xr">
         <a-assets>
-            <a-asset-item id="buu" src="kid_buu.glb"></a-asset-item>
+          <!-- MODELOS 3D -->  
+            <a-asset-item id="buu" src="model/kid_buu.glb"></a-asset-item>
+            <a-asset-item id="mini" src="model/mini.glb"></a-asset-item>
+            <a-asset-item id="idle" src="model/idle.glb"></a-asset-item>
+            <a-asset-item id="minos" src="model/minos.glb"></a-asset-item>
+            <a-asset-item id="contenedor" src="model/container.glb"></a-asset-item>
+            <a-asset-item id="nave" src="model/nave__capcule_copr.glb"></a-asset-item>
+            <a-asset-item id="pistola" src="model/pistola_de_portales.glb"></a-asset-item>
+            <a-asset-item id="arma" src="model/arma.glb"></a-asset-item>
+            <a-asset-item id="mesa" src="model/mesa.glb"></a-asset-item>
+            <a-asset-item id="sofa" src="model/sofa.glb"></a-asset-item>
+            <a-asset-item id="lampara" src="model/lampara.glb"></a-asset-item>
+          <!-- IMAGENES PARA TEXTURAS -->  
+
+          <!-- Posible textura vitrinas -->
+            <img id="albedoRock" src="img/Rock_albedo.jpg" alt="albedorock">  
+            <img id="NormalMapRock" src="img/Rock_normal.jpg" alt="normalMaprock">
+            <img id="heightRock" src="img/Rock_height.jpg" alt="heightrock">
+            <img id="aoRock" src="img/Rock_ao.jpg" alt="aorock">
+            <img id="roughnessRock" src="img/Rock_roughness.jpg" alt="roughnessrock">
+
+          <!-- Posible textura paredes -->
+            <img id="albedoLadrillo" src="img/Ladrillos_albedo.jpg" alt="albedoLadrillo">  
+            <img id="NormalMapLadrillo" src="img/Ladrillos_normal.jpg" alt="NormalMapLadrillo">
+            <img id="heightLadrillo" src="img/Ladrillos_height.jpg" alt="heightLadrillo">
+            <img id="aoLadrillo" src="img/Ladrillos_ao.jpg" alt="aoLadrillo">
+            <img id="roughnessLadrillo" src="img/Ladrillos_roughness.jpg" alt="roughnessLadrillo">
+
+          <!-- Posible textura techo -->
+            <img id="albedoRockVolcan" src="img/Rock_volcan_albedo.jpg" alt="albedorockVolcan">  
+            <img id="NormalMapRockVolcan" src="img/Rock_volcan_normal.jpg" alt="normalMaprockVolcan">
+            <img id="heightRockVolcan" src="img/Rock_volcan_height.jpg" alt="heightrockVolcan">
+            <img id="aoRockVolcan" src="img/Rock_volcan_ao.jpg" alt="aorockVolcan">
+            <img id="roughnessRockVolcan" src="img/Rock_volcan_roughness.jpg" alt="roughnessrockVolcan">
+
+         <!-- Posible textura columnas -->
+            <img id="albedoWall" src="img/Wall_albedo.jpg" alt="albedoWall">  
+            <img id="NormalMapWall" src="img/Wall_normal.jpg" alt="NormalMapWall">
+            <img id="heightWall" src="img/Wall_height.jpg" alt="heightWall">
+            <img id="aoWall" src="img/Wall_ao.jpg" alt="aoWall">
+            <img id="roughnessWall" src="img/Wall_roughness.jpg" alt="roughnessWall">
+
+          <!-- Posible textura deco -->
+            <img id="albedoMadera" src="img/madera_albedo.jpg" alt="albedoMadera">  
+            <img id="NormalMapMadera" src="img/madera_normal.jpg" alt="NormalMapMadera">
+            <img id="heightMadera" src="img/madera_roughness.jpg" alt="heightMadera">
+          
+          <!-- Posible textura suelo -->
+          <img id="albedoTerraza" src="img/Terraza_albedo.jpg" alt="albedoTerraza">  
+          <img id="NormalTerraza" src="img/Terraza_normal.jpg" alt="NormalMapTerraza">
+          <img id="heightTerraza" src="img/Terraza_roughness.jpg" alt="heightTerraza">
+
         </a-assets>
+
+        <a-sky color="white" src="img/sky.jpg" repeat="1 1"></a-sky>
       <!-- Paredes -->
       <!-- Pared frontal -->
-      <a-plane position="0 3 -15" rotation="0 0 0" width="30" height="6" color="red" shadow></a-plane>
+      <a-plane class="pared" position="0 3 -15" rotation="0 0 0" width="30" height="6" shadow></a-plane>
+      <a-box position="0 3 -15" width="10" height="3" depth="1" opacity="0.5" color="white" ></a-box>
       <!-- Pared derecha -->
-      <a-plane position="15 3 0" rotation="0 -90 0" width="30" height="6" color="pink" shadow></a-plane>
+      <a-plane class="pared" position="15 3 0" rotation="0 -90 0" width="30" height="6" shadow
+      ></a-plane>
       <!-- Pared izquierda -->
-      <a-plane position="-15 3 0" rotation="0 90 0" width="30" height="6" color="blue" shadow></a-plane>
+      <a-plane class="pared" position="-15 3 0" rotation="0 90 0" width="30" height="6" shadow ></a-plane>
       <!-- Pared trasera -->
-      <a-plane position="0 3 15" rotation="180 0 0" width="30" height="6" color="green" shadow></a-plane>
+      <a-plane class="pared" position="0 3 15" rotation="180 0 0" width="30" height="6" shadow ></a-plane>
 
       <!-- Suelo -->
-      <a-plane position="0 0 0" rotation="-90 0 0" width="30" height="30" color="purple" shadow></a-plane>
+      <a-plane id="suelo" position="0 0.2 0" rotation="-90 0 0" width="30" height="30" shadow></a-plane>
       <!-- Techo -->
-      <a-plane position="0 6 0" rotation="90 0 0" width="30" height="30" color="purple" shadow></a-plane>
+      <a-plane id="techo" position="0 6 0" rotation="90 0 0" width="30" height="30" shadow></a-plane>
      
       <!-- Habitación -->
       <a-box position="0 3 0" width="30" height="6" depth="30" color="#f0f0f0" shadow></a-box>
       
-      <!-- Vitrinas -->
-      <!-- Vitrina 1 -->
-      <a-box position="-3 1.5 -2" width="1" height="3" depth="1" color="yellow" opacity="0.15" shadow></a-box>
-      <!-- Vitrina 2 -->
-      <a-box position="3 1.5 -2" width="1" height="3" depth="1" color="yellow" opacity="0.15" shadow></a-box>
+      <!-- Suelo grande-->
+      <a-plane position="0 0 0" rotation="-90 0 0" width="60" height="60" color="grey" shadow></a-plane>
       
-      <!-- Mesas -->
+      <!--  DOCORACIONES  -->
+
+      <a-entity gltf-model="#mesa" position="-2 0.2 -13" scale="1.5 1.5 1.5" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#mesa" position="-2 0.2 13" scale="1.5 1.5 1.5" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#sofa" position="-2 0.2 0" scale="1.5 1.5 1.5" rotation="0 -90 0"></a-entity>
+      <a-entity gltf-model="#sofa" position="2 0.2 0" scale="1.5 1.5 1.5" rotation="0 90 0"></a-entity>
+      
+      <a-entity gltf-model="#lampara" position="-13.75 0.5 -6.5" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#lampara" position="-13.75 0.5 -2.4" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#lampara" position="-13.75 0.5 1.6" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#lampara" position="-13.75 0.5 5.6" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#lampara" position="-13.75 0.5 9.6" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#lampara" position="-13.75 0.5 13.6" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      
+      <a-entity gltf-model="#lampara" position="4.2 0.5 -6.5" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#lampara" position="4.2 0.5 -2.4" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#lampara" position="4.2 0.5 1.6" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#lampara" position="4.2 0.5 5.6" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#lampara" position="4.2 0.5 9.6" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#lampara" position="4.2 0.5 13.6" scale="0.02 0.02 0.02" rotation="0 0 0"></a-entity>
+      
+
+
+      
+      <!--  VITRINAS IZQUIERDA -->
+
+      <!-- ELEMENTO 1 -->
+      <!-- Vitrina 1 -->
+      <a-box position="-9 1.5 -10" width="1" height="3" depth="1" color="white" opacity="0.15" shadow></a-box>
       <!-- Mesa 1 -->
-      <a-box position="-3 0.25 -2" width="1.2" height="0.5" depth="1.2" color="#8B4513"></a-box>
-      <!-- Mesa 2 -->
-      <a-box position="3 0.25 -2" width="1.2" height="0.5" depth="1.2" color="#8B4513"></a-box>
-
-      <!-- Objetos en las vitrinas -->
+      <a-box class="vitrina" position="-9 0.25 -10" width="1.2" height="0.5" depth="1.2"></a-box>
+      <!-- Tapa 1 -->
+      <a-box class="vitrina" position="-9 3 -10" width="1.2" height="0.3" depth="1.2"></a-box>
       <!-- Objeto 1 -->
-      <a-entity id="obj1" gltf-model="#buu" position="-3 0.5 -2.25" scale="0.5 0.5 0.5" rotation="0 45 0" animation-mixer></a-entity>
+      <a-entity gltf-model="#buu" position="-9.15 0.5 -10" scale="0.5 0.5 0.5" rotation="0 90 0" animation-mixer  class="center" orbit></a-entity>
+      <!-- Luz 1-->
+      <a-light type="spot" position="-9 3 -10" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
 
-      <a-sphere  position="0 1.25 -5" radius="0.5" color="white" 
+      <!-- ELEMENTO 2 -->
+      <!-- Vitrina 2 -->
+      <a-cylinder position="-9 1.5 -6" height="3" radius="1" color="white" opacity="0.15" shadow></a-cylinder>
+      <!-- Mesa 2 -->
+      <a-cylinder class="vitrina" position="-9 0.25 -6" height="0.5" radius="1.2"></a-cylinder>
+      <!-- Tapa 2 -->
+      <a-cylinder class="vitrina" position="-9 3 -6"  height="0.3" radius="1.2"></a-cylinder>
+      <!-- Objeto2-->
+      <a-entity gltf-model="#arma" position="-9 1.5 -6" scale="1 1 1" rotation="0 90 0"
+      animation="property: rotation;
+      to:0 365 0; dur: 10000; loop: true; dir: alternate;"
+      ></a-entity>
+      <!-- Luz 2-->
+      <a-light type="spot" position="-9 3 -6" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+
+
+      <!-- ELEMENTO 3 -->
+      <!-- Vitrina 3 -->
+      <a-sphere position="-9 1.25 -2" radius="1" depth="1" color="white" opacity="0.15" shadow></a-sphere>
+      <!-- Mesa 3 -->
+      <a-box class="vitrina" position="-9 0.25 -2" width="1.5" height="0.5" depth="1.5" ></a-box>
+      <!-- Tapa 3 -->
+      <a-box class="vitrina" position="-9 2.25 -2" width="1.5" height="0.5" depth="1.5" ></a-box>
+      <!-- Objeto3-->
+      <a-box position="-9 1.25 -2" scale="0.5 0.5 0.5" color="pink" class="center" orbit
+      animation="property: rotation;
+      to: 275 365 0; dur: 2000; loop: true; dir: alternate;"></a-box>
+      <!-- Luz 3-->
+      <a-light type="spot" position="-9 3 -2" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+
+      <!-- ELEMENTO 4 -->
+      <!-- Vitrina 4 -->
+      <a-sphere position="-9 1.25 2" radius="1" depth="1" color="white" opacity="0.15" shadow></a-sphere>
+      <!-- Mesa 4 -->
+      <a-box class="vitrina" position="-9 0.25 2" width="1.5" height="0.5" depth="1.5" ></a-box>
+      <!-- Tapa 4 -->
+      <a-box class="vitrina" position="-9 2.25 2" width="1.5" height="0.5" depth="1.5" ></a-box>
+      <!-- Objeto4-->
+      <a-box position="-9 1.25 2" scale="0.5 0.5 0.5" color="pink" class="center" orbit
+      animation="property: rotation;
+      to: 275 365 0; dur: 2000; loop: true; dir: alternate;"></a-box>
+      <!-- Luz 4-->
+      <a-light type="spot" position="-9 3 2" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+
+
+      <!-- ELEMENTO 5 -->
+      <!-- Vitrina 5 -->
+      <a-box position="-9 1.5 6" width="1" height="3" depth="1" color="white" opacity="0.15" shadow></a-box>
+      <!-- Mesa 5 -->
+      <a-box class="vitrina" position="-9 0.25 6" width="1.2" height="0.5" depth="1.2"></a-box>
+      <!-- Tapa 5 -->
+      <a-box class="vitrina" position="-9 3 6" width="1.2" height="0.3" depth="1.2"></a-box>
+      <!-- Objeto5-->
+
+      <!-- Luz 5-->
+      <a-light type="spot" position="-9 3 6" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+
+
+      <!-- ELEMENTO 6-->
+      <!-- Vitrina 6 -->
+      <a-cylinder position="-9 1.5 10" height="3" radius="1.1" color="white" opacity="0.15" shadow></a-cylinder>
+      <!-- Mesa 6 -->
+      <a-cylinder class="vitrina" position="-9 0.25 10"  height="0.5" radius="1.3" ></a-cylinder>
+      <!-- Tapa 6 -->
+      <a-cylinder class="vitrina" position="-9 3 10"  height="0.3" radius="1.3" ></a-cylinder>
+      <!-- Objeto 6 -->
+      <a-entity gltf-model="#mini" position="-9.15 0.5 10" scale="0.6 0.6 0.6" rotation="0 90 0" animation-mixer  class="center" orbit></a-entity>
+      <!-- Luz 6-->
+      <a-light type="spot" position="-9 3 10" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+
+      <!--LADO DERECHO-->
+
+      <!-- ELEMENTO 1 -->
+      <!-- Vitrina 1 -->
+      <a-box position="9 1.5 -10" width="1" height="3" depth="1.5" color="white" opacity="0.15" shadow></a-box>
+      <!-- Mesa 1 -->
+      <a-box class="vitrina" position="9 0.25 -10" width="1.2" height="0.5" depth="1.7"></a-box>
+      <!-- Tapa 3 -->
+      <a-box class="vitrina" position="9 3 -10" width="1.2" height="0.3" depth="1.7" ></a-box>
+      <!-- Objeto 1 -->
+      <a-entity gltf-model="#minos" position="9.05 1.5 -10" scale="0.06 0.06 0.06" rotation="0 -90 0" animation-mixer  id="center" orbit></a-entity>
+      <!-- Luz 1-->
+      <a-light type="spot" position="9 3 -10" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+
+      <!-- ELEMENTO 2 -->
+      <!-- Vitrina 2 -->
+      <a-box position="9 1.5 -6" width="1" height="3" depth="1" color="white" opacity="0.15" shadow></a-box>
+      <!-- Mesa 2 -->
+      <a-box class="vitrina" position="9 0.25 -6" width="1.2" height="0.5" depth="1.2"></a-box>
+      <!-- Tapa 3 -->
+      <a-box class="vitrina" position="9 3 -6" width="1.2" height="0.3" depth="1.2" ></a-box>
+      <!-- Objeto2-->
+
+      <!-- Luz 2-->
+      <a-light type="spot" position="9 3 -6" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+
+      <!-- ELEMENTO 3 -->
+      <!-- Vitrina 3 -->
+      <a-sphere position="9 1.25 -2" radius="1" depth="1" color="white" opacity="0.15" shadow></a-sphere>
+      <!-- Mesa 3 -->
+      <a-box class="vitrina" position="9 0.25 -2" width="1.5" height="0.5" depth="1.5" ></a-box>
+      <!-- Tapa 3 -->
+      <a-box class="vitrina" position="9 2.25 -2" width="1.5" height="0.5" depth="1.5"></a-box>
+      <!-- Objeto3-->
+      <a-entity gltf-model="#pistola" position="9.15 1.3 -2" scale="1.2 1.2 1.2" rotation="0 -90 0" animation-mixer  class="center" orbit
+      animation="property: rotation;
+      to: 0 365 0; dur: 4000; loop: true; dir: alternate;"></a-entity>
+      <!-- Luz 3-->
+      <a-light type="spot" position="9 3 -2" rotation="-90 0 0" intensity="1" color="#a6ff00" shadow angle="25" distance="8"></a-light>
+
+          <!-- ELEMENTO 4 -->
+      <!-- Vitrina 4 -->
+      <a-sphere position="9 1.25 2" radius="1" depth="1" color="white" opacity="0.15" shadow></a-sphere>
+      <!-- Mesa 4 -->
+      <a-box class="vitrina" position="9 0.25 2" width="1.5" height="0.5" depth="1.5" ></a-box>
+      <!-- Tapa 4 -->
+      <a-box class="vitrina" position="9 2.25 2" width="1.5" height="0.5" depth="1.5" ></a-box>
+      <!-- Objeto 4-->
+      <a-entity gltf-model="#contenedor" position="9.15 1.3 2" scale="0.6 0.6 0.6" rotation="0 -90 0" animation-mixer  class="center" orbit
+      animation="property: rotation;
+      to: 0 365 0; dur: 4000; loop: true; dir: alternate;"></a-entity>
+      <!-- Luz 4-->
+      <a-light type="spot" position="9 3 2" rotation="-90 0 0" intensity="1" color="#85ffbe" shadow angle="25" distance="8"></a-light>
+
+
+      <!-- ELEMENTO 5 -->
+      <!-- Vitrina 5 -->
+      <a-box position="9 1.5 6" width="1" height="3" depth="1" color="white" opacity="0.15" shadow></a-box>
+      <!-- Mesa 5 -->
+      <a-box class="vitrina" position="9 0.25 6" width="1.2" height="0.5" depth="1.2" ></a-box>
+      <!-- Tapa 5 -->
+      <a-box class="vitrina" position="9 3 6" width="1.2" height="0.3" depth="1.2" ></a-box>
+      <!-- Objeto5-->
+
+      <!-- Luz 5-->
+      <a-light type="spot" position="9 3 6" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+      <!-- ELEMENTO 6 -->
+      <!-- Vitrina 6 -->
+      <a-box position="9 1.5 10" width="1" height="3" depth="1" color="white" opacity="0.15" shadow></a-box>
+      <!-- Mesa 6 -->
+      <a-box class="vitrina" position="9 0.25 10" width="1.2" height="0.5" depth="1.2" ></a-box>
+      <!-- Tapa 6 -->
+      <a-box class="vitrina" position="9 3 10" width="1.2" height="0.3" depth="1.2" ></a-box>
+      <!-- Objeto 6 -->
+
+      <!-- Luz 6-->
+      <a-light type="spot" position="9 3 10" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+
+
+    
+
+      <a-sphere  position="-2 1.25 -5" radius="0.5" color="green" 
       animation="startEvents: click; property: scale;
           from: 1.5 1.5 1.5; to: 1 1 1; dur: 1000"
           action="event: click; message: activado!">
-  </a-sphere>
-  <a-sphere  position="0 1.25 -5" radius="0.25" color="white" 
-  animation="startEvents: click; property: scale;
-      from: 1.5 1.5 1.5; to: 1 1 1; dur: 1000"
-      action="event: click; message: activado!">
-</a-sphere>
+      </a-sphere>
+
+      <a-sphere  position="2 1.25 -5" radius="0.5" color="white" 
+      animation="startEvents: click; property: scale;
+          from: 1.5 1.5 1.5; to: 1 1 1; dur: 1000"
+          desaction="event: click; message: desactivado!">
+      </a-sphere>
   
 
-      <!-- Objeto 2 -->
-      <a-box position="3 2 -2" scale="0.5 0.5 0.5" color="pink" id="center" orbit
-      animation="property: rotation;
-      to: 275 365 0; dur: 2000; loop: true; dir: alternate;"></a-box>
+
       
       <!-- Iluminación -->
-      <a-light type="ambient" color="white" ></a-light>
-      <a-light type="spot" position="-3 3 -2" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
-      <a-light type="spot" position="3 3 -2" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+      <a-light type="ambient" color="white" intensity="1"></a-light>
+      <a-light type="spot" position="0 3 0" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+      <a-light type="point" position="0 3 0" intensity="0.3" color="#6f6f6f"></a-light>
       
-      <!-- Cámara -->
-      <a-entity camera position="0 1.8 0" look-controls wasd-controls="enabled: true"></a-entity>
-
       <!--Cursor-->
-      <a-entity cursor="rayOrigin:mouse"></a-entity>
-      <a-entity movement-controls="fly: true" position="0 0 0">
+      <a-entity movement-controls="fly: true" position="0 0 -1">
         <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>
         <a-entity cursor="rayOrigin:mouse"></a-entity>
         <a-entity laser-controls="hand: right"></a-entity>

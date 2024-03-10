@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Desplazamiento en A-Frame</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+  <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam;">
+    <!-- Jugador (cilindro con la cámara) -->
+    <a-cylinder id="player" position="0 1.6 -5" radius="0.5" height="2" color="blue" dynamic-body>
+      <a-entity camera look-controls wasd-controls></a-entity>
+    </a-cylinder>
+
+    <!-- Plano para proporcionar una superficie -->
+    <a-plane position="0 0 -5" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
+
+    <!-- Entorno -->
+    <a-sky color="#ECECEC"></a-sky>
+
+    <!-- Evento de teclado -->
+    <script>
+      var player = document.getElementById('player');
+
+      window.addEventListener('keydown', function(event) {
+        var position = player.getAttribute('position');
+        var rotation = player.getAttribute('rotation');
+
+        // Mover hacia adelante si se presiona la tecla "W"
+        if (event.key === 'w' || event.key === 'W') {
+          var direction = new THREE.Vector3();
+          player.object3D.getWorldDirection(direction);
+          direction.multiplyScalar(0.1);
+          position.x += direction.x;
+          position.z += direction.z;
+        }
+
+        // Mover hacia adelante si se presiona la flecha arriba
+        if (event.key === 'ArrowUp') {
+          position.z -= Math.cos(THREE.Math.degToRad(rotation.y)) * 0.1;
+          position.x -= Math.sin(THREE.Math.degToRad(rotation.y)) * 0.1;
+        }
+
+        // Mover hacia atrás si se presiona la flecha abajo
+        if (event.key === 'ArrowDown') {
+          position.z += Math.cos(THREE.Math.degToRad(rotation.y)) * 0.1;
+          position.x += Math.sin(THREE.Math.degToRad(rotation.y)) * 0.1;
+        }
+
+        // Mover hacia la izquierda si se presiona la flecha izquierda
+        if (event.key === 'ArrowLeft') {
+          position.x -= Math.cos(THREE.Math.degToRad(rotation.y + 90)) * 0.1;
+          position.z -= Math.sin(THREE.Math.degToRad(rotation.y + 90)) * 0.1;
+        }
+
+        // Mover hacia la derecha si se presiona la flecha derecha
+        if (event.key === 'ArrowRight') {
+          position.x += Math.cos(THREE.Math.degToRad(rotation.y + 90)) * 0.1;
+          position.z += Math.sin(THREE.Math.degToRad(rotation.y + 90)) * 0.1;
+        }
+
+        player.setAttribute('position', position);
+      });
+    </script>
+  </a-scene>
+</body>
+</html>

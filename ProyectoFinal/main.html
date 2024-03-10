@@ -3,23 +3,29 @@
 <head>
   <title>Laberinto Aleatorio en A-Frame</title>
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
 </head>
 <body>
-  <a-scene physics = "gravity: -9.8">
+  <a-scene physics="gravity: -9.8" xr-mode-ui="XRMode: xr">
     <a-assets>
       <img id="NormalMap" src="img/Rock_normal.jpg" alt="normalMap">
       <img id="texture" src="img/Rock_albedo.jpg" alt="texture">
       <img id="ao" src="img/Rock_ao.jpg" alt="ap">
-  </a-assets>
-    <!-- Cámara -->
-    <a-entity id="player" camera look-controls wasd-controls position="0 1.6 0" collision></a-entity>
-    
-    
-    <!-- Luces -->
+    </a-assets>
+
+      <!--Cursor-->
+      
+      <a-entity movement-controls="fly: true" position="0 0 -1">
+        <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>
+        <a-entity cursor="rayOrigin:mouse"></a-entity>
+        <a-entity laser-controls="hand: right"></a-entity>
+      </a-entity>
+
+    <!-- Lights -->
     <a-light type="ambient" color="#333"></a-light>
     <a-light type="directional" intensity="0.5" position="-1 1 0"></a-light>
-    
-    <!-- Script para generar un laberinto aleatorio -->
+
+    <!-- Script to generate a random maze -->
     <script>
       AFRAME.registerComponent('random-maze', {
         init: function () {
@@ -27,7 +33,7 @@
           var mazeWidth = 50;
           var mazeHeight = 50;
 
-          // Generar laberinto aleatorio
+          // Generate random maze
           for (var x = 0; x < mazeWidth; x++) {
             for (var z = 0; z < mazeHeight; z++) {
               if (Math.random() < 0.35) {
@@ -36,35 +42,38 @@
                 wall.setAttribute('width', '1');
                 wall.setAttribute('height', '3');
                 wall.setAttribute('depth', '1');
-                wall.setAttribute('static-body', ''); // Agregar colisión estática
+                wall.setAttribute('static-body', ''); // Add static collision
                 wall.setAttribute('position', { x: x - mazeWidth / 2, y: 1, z: z - mazeHeight / 2 });
-                // materiales
-                wall.setAttribute('src','img/Rock_albedo.jpg')
-                wall.setAttribute('repeat','1 1')
-                wall.setAttribute('normal-map','img/Rock_normal.jpg')
-                wall.setAttribute('normal-texture-repeat','1 1')
-                wall.setAttribute('normal-scale','1 -1')
-                wall.setAttribute('roughness','0.5')
-                wall.setAttribute('ambient-occlusion-map','img/Rock_ao.jpg')
-                wall.setAttribute('ambient-occlusion-texture-repeat','1 1')
+                // Materials
+                wall.setAttribute('src', 'img/Rock_albedo.jpg')
+                wall.setAttribute('repeat', '1 1')
+                wall.setAttribute('normal-map', 'img/Rock_normal.jpg')
+                wall.setAttribute('normal-texture-repeat', '1 1')
+                wall.setAttribute('normal-scale', '1 -1')
+                wall.setAttribute('roughness', '0.5')
+                wall.setAttribute('ambient-occlusion-map', 'img/Rock_ao.jpg')
+                wall.setAttribute('ambient-occlusion-texture-repeat', '1 1')
 
                 sceneEl.appendChild(wall);
               }
             }
           }
 
-          // Marcar el centro del laberinto
+          // Mark center of maze
           var centerMarker = document.createElement('a-sphere');
           centerMarker.setAttribute('radius', '0.5');
           centerMarker.setAttribute('color', 'red');
-          centerMarker.setAttribute('position', { x: 0, y: 1, z: 0 }); // Coordenadas del centro
+          centerMarker.setAttribute('position', { x: 0, y: 1, z: 0 }); // Center coordinates
           centerMarker.setAttribute('opacity', '0.5');
           sceneEl.appendChild(centerMarker);
         }
       });
     </script>
+
+    <!-- Ground plane -->
     <a-plane position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#eab44a"></a-plane>
-    <!-- Objeto contenedor para el script -->
+
+    <!-- Object container for the script -->
     <a-entity random-maze></a-entity>
   </a-scene>
 </body>
