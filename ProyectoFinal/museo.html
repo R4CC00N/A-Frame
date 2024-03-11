@@ -63,13 +63,17 @@
           <img id="NormalTerraza" src="img/Terraza_normal.jpg" alt="NormalMapTerraza">
           <img id="heightTerraza" src="img/Terraza_roughness.jpg" alt="heightTerraza">
 
+          <img id="press" src="img/action.jpg" alt="action">
+
         </a-assets>
 
         <a-sky color="white" src="img/sky.jpg" repeat="1 1"></a-sky>
       <!-- Paredes -->
       <!-- Pared frontal -->
       <a-plane class="pared" position="0 3 -15" rotation="0 0 0" width="30" height="6" shadow></a-plane>
-      <a-box position="0 3 -15" width="10" height="3" depth="1" opacity="0.5" color="white" ></a-box>
+      <a-box src="#press" position="0 3 -15" width="9" height="3" depth="1" opacity="0.5" color="white" ></a-box>
+
+      
       <!-- Pared derecha -->
       <a-plane class="pared" position="15 3 0" rotation="0 -90 0" width="30" height="6" shadow
       ></a-plane>
@@ -77,6 +81,7 @@
       <a-plane class="pared" position="-15 3 0" rotation="0 90 0" width="30" height="6" shadow ></a-plane>
       <!-- Pared trasera -->
       <a-plane class="pared" position="0 3 15" rotation="180 0 0" width="30" height="6" shadow ></a-plane>
+      <a-box src="#press" position="0 3 15" width="9" height="3" depth="1" opacity="0.5" color="white" rotation=" 0 180 0"></a-box>
 
       <!-- Suelo -->
       <a-plane id="suelo" position="0 0.2 0" rotation="-90 0 0" width="30" height="30" shadow></a-plane>
@@ -167,38 +172,33 @@
       <!-- Tapa 4 -->
       <a-box class="vitrina" position="-9 2.25 2" width="1.5" height="0.5" depth="1.5" ></a-box>
       <!-- Objeto4-->
-      <a-entity gltf-model="#db" position="-9 1.5 2" scale="1 1 1" rotation="0 90 0"
-      animation="property: rotation;
-      to:12 365 25; dur: 10000; loop: true; dir: alternate;"
-      ></a-entity>
+      <a-entity gltf-model="#raccoon" position="-9 0.8 2" scale="0.12 0.12 0.12" rotation="0 -90 0"></a-entity>
+
       <!-- Luz 4-->
-      <a-light type="spot" position="-9 3 2" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+      <a-light type="spot" position="-9 3 6" rotation="-90 0 0" intensity="1" color="#f3ff99" shadow angle="25" distance="8"></a-light>
+      
 
 
       <!-- ELEMENTO 5 -->
-      <!-- Vitrina 5 -->
-      <a-box position="-9 1.5 6" width="1" height="3" depth="1" color="white" opacity="0.15" shadow></a-box>
       <!-- Mesa 5 -->
-      <a-box class="vitrina" position="-9 0.25 6" width="1.2" height="0.5" depth="1.2"></a-box>
-      <!-- Tapa 5 -->
-      <a-box class="vitrina" position="-9 3 6" width="1.2" height="0.3" depth="1.2"></a-box>
+      <a-box class="vitrina" position="-9 0.8 6" width="0.8" height="0.8" depth="0.8"></a-box>
+      <!-- atril 5 -->
+      <a-box class="vitrina" position="-9 0.25 6" width="1.2" height="0.3" depth="1.2"></a-box>
       <!-- Objeto5-->
-      <a-entity gltf-model="#raccoon" position="-9 1.5 6" scale="1 1 1" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#db" position="-9 1.5 6" scale="0.05 0.05 0.05" rotation="0 0 0" class="center2" orbit2
+      animation="property: rotation;
+      to:12 365 25; dur: 10000; loop: true; dir: alternate;"
+      ></a-entity>
       <!-- Luz 5-->
-      <a-light type="spot" position="-9 3 6" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+      <a-light type="spot" position="-9 3 2" rotation="-90 0 0" intensity="1" color="#66ffb0" shadow angle="25" distance="8"></a-light>
 
-
-      <!-- ELEMENTO 6-->
-      <!-- Vitrina 6 -->
-      <a-cylinder position="-9 1.5 10" height="3" radius="1.1" color="white" opacity="0.15" shadow></a-cylinder>
-      <!-- Mesa 6 -->
-      <a-cylinder class="vitrina" position="-9 0.25 10"  height="0.5" radius="1.3" ></a-cylinder>
-      <!-- Tapa 6 -->
-      <a-cylinder class="vitrina" position="-9 3 10"  height="0.3" radius="1.3" ></a-cylinder>
+            <!-- ELEMENTO 6 -->
       <!-- Objeto 6 -->
-      <a-entity gltf-model="#mini" position="-9.15 0.5 10" scale="0.6 0.6 0.6" rotation="0 90 0" animation-mixer  class="center2"></a-entity>
+      <a-entity gltf-model="#nave" position="-19 0.2 1.6" scale="0.5 0.5 0.5" rotation="0 90 0" ></a-entity>
       <!-- Luz 6-->
-      <a-light type="spot" position="-9 3 10" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
+      <a-light type="spot" position="9 5 10" rotation="-90 0 0" intensity="1" color="#ffa642" shadow angle="25" distance="8"></a-light>
+
+
 
       <!--LADO DERECHO-->
 
@@ -234,7 +234,7 @@
       <!-- Tapa 3 -->
       <a-box class="vitrina" position="9 2.25 -2" width="1.5" height="0.5" depth="1.5"></a-box>
       <!-- Objeto3-->
-      <a-entity gltf-model="#pistola" position="9.15 1.3 -2" scale="1.2 1.2 1.2" rotation="0 -90 0" animation-mixer  
+      <a-entity gltf-model="#pistola" position="9.15 1.3 -2" scale="1.2 1.2 1.2" rotation="0 -90 0" class="center" orbit
       animation="property: rotation;
       to: 0 365 0; dur: 4000; loop: true; dir: alternate;"></a-entity>
       <!-- Luz 3-->
@@ -248,7 +248,7 @@
       <!-- Tapa 4 -->
       <a-box class="vitrina" position="9 2.25 2" width="1.5" height="0.5" depth="1.5" ></a-box>
       <!-- Objeto 4-->
-      <a-entity gltf-model="#contenedor" position="9.15 1.3 2" scale="0.6 0.6 0.6" rotation="0 -90 0" animation-mixer  
+      <a-entity gltf-model="#contenedor" position="9.15 1.3 2" scale="0.6 0.6 0.6" rotation="0 -90 0" class="center" orbit 
       animation="property: rotation;
       to: 0 365 0; dur: 4000; loop: true; dir: alternate;"></a-entity>
       <!-- Luz 4-->
@@ -266,44 +266,45 @@
 
       <!-- Luz 5-->
       <a-light type="spot" position="9 3 6" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
-      <!-- ELEMENTO 6 -->
+
+   
+      <!-- ELEMENTO 6-->
       <!-- Vitrina 6 -->
-      <a-box position="9 1.5 10" width="1" height="3" depth="1" color="white" opacity="0.15" shadow></a-box>
+      <a-cylinder position="9 1.5 10" height="3" radius="1.1" color="white" opacity="0.15" shadow></a-cylinder>
       <!-- Mesa 6 -->
-      <a-box class="vitrina" position="9 0.25 10" width="1.2" height="0.5" depth="1.2" ></a-box>
+      <a-cylinder class="vitrina" position="9 0.25 10"  height="0.5" radius="1.3" ></a-cylinder>
       <!-- Tapa 6 -->
-      <a-box class="vitrina" position="9 3 10" width="1.2" height="0.3" depth="1.2" ></a-box>
+      <a-cylinder class="vitrina" position="9 3 10"  height="0.3" radius="1.3" ></a-cylinder>
       <!-- Objeto 6 -->
-      <a-entity gltf-model="#nave" position="9 1.5 10" scale="1 1 1" rotation="0 90 0" ></a-entity>
+      <a-entity gltf-model="#mini" position="9.15 0.5 10" scale="0.6 0.6 0.6" rotation="0 270 0" animation-mixer  class="center2" orbit2></a-entity>
       <!-- Luz 6-->
       <a-light type="spot" position="9 3 10" rotation="-90 0 0" intensity="1" color="red" shadow angle="25" distance="8"></a-light>
 
-
     
 
-      <a-sphere  position="-2 1.25 -5" radius="0.5" color="green" 
+      <a-cylinder  position="-1 1.3 -14" radius="0.25" height=0.2  color="green" 
       animation="startEvents: click; property: scale;
           from: 1.5 1.5 1.5; to: 1 1 1; dur: 1000"
           action1="event: click; message: activado!">
-      </a-sphere>
+      </a-cylinder>
 
-      <a-sphere  position="2 1.25 -5" radius="0.5" color="red" 
+      <a-cylinder  position="1 1.3 -14" radius="0.25" height=0.2 color="red" 
       animation="startEvents: click; property: scale;
           from: 1.5 1.5 1.5; to: 1 1 1; dur: 1000"
           desaction1="event: click; message: desactivado!">
-      </a-sphere>
+      </a-cylinder>
   
-      <a-sphere  position="-2 2.25 -5" radius="0.5" color="cyan" 
+      <a-cylinder  position="-1 1.3 14" radius="0.25" height=0.2 color="cyan" 
       animation="startEvents: click; property: scale;
           from: 1.5 1.5 1.5; to: 1 1 1; dur: 1000"
           action2="event: click; message: activado!">
-      </a-sphere>
+      </a-cylinder>
 
-      <a-sphere  position="2 2.25 -5" radius="0.5" color="purple" 
+      <a-cylinder  position="1 1.3 14" radius="0.25" height=0.2 color="purple" 
       animation="startEvents: click; property: scale;
           from: 1.5 1.5 1.5; to: 1 1 1; dur: 1000"
           desaction2="event: click; message: desactivado!">
-      </a-sphere>
+      </a-cylinder>
 
       
       <!-- Iluminación -->
