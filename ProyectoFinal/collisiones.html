@@ -4,31 +4,17 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
   </head>
   <body>
-    <a-scene physics="debug:true; gravity: -9.8; restitution: 0.7">
+    <a-scene>
       
       <a-entity movement-controls="fly: true" position="0 0 -1">
-        <a-entity camera position="0 7.6 0" look-controls wasd-controls></a-entity>
+        <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>
         <a-entity cursor="rayOrigin:mouse"></a-entity>
         <a-entity laser-controls="hand: right"></a-entity>
       </a-entity>
 
-      <!--<a-box position="1.25 0.5 -3"  rotation="0 45 0" size="0.5 0.5 0.5" color="#ff0606"></a-box>-->
-        <!-- Box -->
-        <a-box color="red" dynamic-body="shape: box; mass: 2"></a-entity>
-
-        <!-- Cylinder -->
-        <a-cylinder position="0 3 0" dynamic-body="shape: cylinder; cylinderAxis: y; mass: 5"></a-entity>
-        
-        <a-sphere 
-        position="0.25 3 -5" 
-        radius="0.5" 
-        color="#83ff06"
-        dynamic-body="linearDmaping: 0.5">
-        </a-sphere>
-
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="#a3c2fc" static-body></a-plane>
-      
-      <a-sky color="#ECECEC"></a-sky>
+      <a-torus-knot position = "0 1 -2" color="red" arc="180" p="2" q="5" radius="0.05" radius-tubular="0.005"></a-tourus-knot>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-sky color="#494949"></a-sky>
     </a-scene>
   </body>
 </html>
