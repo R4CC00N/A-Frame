@@ -14,6 +14,6 @@ En este fichero lo que se pretendia era generar un laberinto aleatorio en donde 
 ### Fichero 2 
 -- EL MUSEO: [https://r4cc00n.github.io/A-Frame/ProyectoFinal/museo.html](https://r4cc00n.github.io/A-Frame/ProyectoFinal/museo.html) 
 
-En este fichero lo que se pretendia crear una habiatacion cerrada en donde exponer objetos glb creados por mi mismo o animaciones con objetos basicos de a-frame, ademas de añadirme alcunas acciones con botones y explorar un poco las opciones de interactividad.
+En este fichero lo que se pretendia crear una habiatacion cerrada en donde exponer objetos glb creados por mi mismo o animaciones con objetos basicos de a-frame, ademas de añadirme alcunas acciones con botones y explorar un poco las opciones de interactividad. Para esto existen botones en cada mesa el boton verde y azul activan un sistema de particulas simple y el rojo y morado lo desactivan
 
 nuevamente las colisiones con muros u objetos no las pude realizar en ninguno de los dos archivos.
