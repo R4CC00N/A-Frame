@@ -1,72 +1,57 @@
-<!DOCTYPE html>
-
-<!-- Simple physics
-  Using aframe-physics-system.
-
-  The camera does not go though objects in the scene, and is "sustained"
-  by the plane acting as a floor. But if you go beyond the borders of the
-  plane, you fall down (you know, gravity...)
--->
-
 <html>
   <head>
-    <script src="//aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script>
-    <script src="//cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
-    <script src="//cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-
-    <script>
-      AFRAME.registerComponent('collision-wire', {
-        schema: {
-          element: {type: 'string'}
-        },
-        init: function() {
-          let el = this.el;
-          let element = this.data.element;
-
-          el.addEventListener("collidestart", function (event) {
-            if ( event.detail.targetEl.id === element) {
-              el.setAttribute('material', {'wireframe': true});
-            };
-          });
-          el.addEventListener("collideend", function (event) {
-            if ( event.detail.targetEl.id === element) {
-              el.setAttribute('material', {'wireframe': false});
-            };
-          });
-        }
-      });
-    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1">
+    <title>Examples • Spring AMMO</title>
+    <script type="text/javascript" src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/MozillaReality/ammo.js@8bbc0ea/builds/ammo.wasm.js"></script>
+    <script src="../../dist/aframe-physics-system.js"></script>
+    <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
-    <a-scene physics="driver: ammo; debug: true; debugDrawMode: 1;">
-      <!-- Static floor -->
-      <a-plane ammo-body="type: static" ammo-shape="type: box"
-          position="0 0 -4" rotation="-90 0 0" width="8" height="20"
-          color="yellow"></a-plane>
-      <!-- Static cylinder -->
-      <a-cylinder ammo-body="type: static; emitCollisionEvents: true;"
-          ammo-shape="type: cylinder"
-          collision-wire="element: cam"
-          position="0 1 -1" radius="1" height="3"
-          color="orange"></a-cylinder>
-      <!-- Dynamic box -->
-      <a-box ammo-body="type: dynamic" ammo-shape="type: box"
-          position="0 4 -2" width="3" height="2" depth="1"
-          color="red"></a-box>
-      <!-- Dynamic box -->
-      <a-box ammo-body="type: dynamic" ammo-shape="type: box"
-          position="2 10 0" width="1" height="1" depth="1"
-          color="blue"></a-box>
+    <div class="text-overlay">
+      <p>Four vertical springs each between two boxes with an
+        assortment of damping and stiffness values using the Cannon Worker driver.</p>
+    </div>
+        <a class="code-link"
+        target="_blank"
+        href="https://github.com/c-frame/aframe-physics-system/blob/master/examples/ammo/spring.html">
+        view code
+    </a>
+    <a-scene physics="driver: ammo" stats>
+      <a-text color="black" position="1.5 3 -3" value="damping: 0.25\nstiffness: 25"></a-text>
+      <a-box id="one" position="2 2 -3" color="blue" ammo-body="type: static"></a-box>
+      <!-- default linearSleepingThreshold of 1.6 is a little too high and the spring ends up freezing
+           with that setting.  A value of 0.5 works better-->
+      <a-box position="2 1 -3"
+             color="green"
+             ammo-body="linearSleepingThreshold: 0.5" ammo-shape
+             ammo-constraint="target: #one; type: spring; damping: 0.25; stiffness: 25"></a-box>
 
-      <!-- Camera rig, with a cylynder to give an idea of its "size"-->
-      <a-entity movement-controls="fly: false" position="0 0 5"
-          geometry="primitive: cylinder; height: 2; radius: 0.8"
-          material="color: green; wireframe: true"
-          id="cam" ammo-body="type: kinematic;" ammo-shape="type: cylinder">
-        <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>    
-      </a-entity>
+      <a-text color="black" position="-0.5 3 -3" value="damping: 0.75\nstiffness: 75"></a-text>
+      <a-box id="two" position="0 2 -3" color="blue" ammo-body="type: static"></a-box>
+      <a-box id="onespring"
+             position="0 1 -3"
+             color="green"
+             ammo-body="linearSleepingThreshold: 0.5" ammo-shape
+             ammo-constraint="target: #two; type: spring; damping: 0.75; stiffness: 75;"></a-box>
 
+      <a-text color="black" position="-2.5 3 -3" value="damping: 1\nstiffness: 100"></a-text>
+      <a-box id="three" position="-2 2 -3" color="blue" ammo-body="type: static"></a-box>
+      <a-box id="twospring"
+             position="-2 1 -3"
+             color="green"
+             ammo-body="linearSleepingThreshold: 0.5" ammo-shape
+             ammo-constraint="target: #three; type: spring; "></a-box>
+
+      <a-text color="black" position="4.5 3 -3" value="localAnchorB:1 0 0\n(not yet supported in Ammo)"></a-text>
+      <a-box id="four" position="5 2 -3" color="blue" ammo-body="type: static"></a-box>
+      <a-box id="threespring"
+             position="5 1 -3"
+             color="green"
+             ammo-body="linearSleepingThreshold: 0.5" ammo-shape
+             ammo-constraint="target: #four; type: spring; targetPivot: 1 0 0;"></a-box>
     </a-scene>
   </body>
 </html>
